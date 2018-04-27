@@ -25,14 +25,16 @@ public class LeaveInformation {
     private String studentBranch;
     private String studentDegree;
     private String studentDescription;
-    private Blob studentAttachment1 = null;
-    private Blob studentAttachment2 = null;
-    private Blob studentAttachment3 = null;
+    private String studentAttachment1;
+    private String studentAttachment2;
+    private String studentAttachment3;
     private Date studentDateFrom;
     private Date studentDateTo;
     private String studentDateTotal;
     private String leaveType;
     private String leaveYear;
+    private String leaveId;
+    private String advisorName;
 
     public LeaveInformation() {
         
@@ -248,47 +250,7 @@ public class LeaveInformation {
         this.leaveType = leaveType;
     }
 
-    /**
-     * @return the studentAttachment1
-     */
-    public Blob getStudentAttachment1() {
-        return studentAttachment1;
-    }
-
-    /**
-     * @param studentAttachment1 the studentAttachment1 to set
-     */
-    public void setStudentAttachment1(Blob studentAttachment1) {
-        this.studentAttachment1 = studentAttachment1;
-    }
-
-    /**
-     * @return the studentAttachment2
-     */
-    public Blob getStudentAttachment2() {
-        return studentAttachment2;
-    }
-
-    /**
-     * @param studentAttachment2 the studentAttachment2 to set
-     */
-    public void setStudentAttachment2(Blob studentAttachment2) {
-        this.studentAttachment2 = studentAttachment2;
-    }
-
-    /**
-     * @return the studentAttachment3
-     */
-    public Blob getStudentAttachment3() {
-        return studentAttachment3;
-    }
-
-    /**
-     * @param studentAttachment3 the studentAttachment3 to set
-     */
-    public void setStudentAttachment3(Blob studentAttachment3) {
-        this.studentAttachment3 = studentAttachment3;
-    }
+    
 
     /**
      * @return the leaveYear
@@ -302,6 +264,76 @@ public class LeaveInformation {
      */
     public void setLeaveYear(String leaveYear) {
         this.leaveYear = leaveYear;
+    }
+
+    /**
+     * @return the leaveId
+     */
+    public String getLeaveId() {
+        return leaveId;
+    }
+
+    /**
+     * @param leaveId the leaveId to set
+     */
+    public void setLeaveId(String leaveId) {
+        this.leaveId = leaveId;
+    }
+
+    /**
+     * @return the studentAttachment1
+     */
+    public String getStudentAttachment1() {
+        return studentAttachment1;
+    }
+
+    /**
+     * @param studentAttachment1 the studentAttachment1 to set
+     */
+    public void setStudentAttachment1(String studentAttachment1) {
+        this.studentAttachment1 = studentAttachment1;
+    }
+
+    /**
+     * @return the studentAttachment2
+     */
+    public String getStudentAttachment2() {
+        return studentAttachment2;
+    }
+
+    /**
+     * @param studentAttachment2 the studentAttachment2 to set
+     */
+    public void setStudentAttachment2(String studentAttachment2) {
+        this.studentAttachment2 = studentAttachment2;
+    }
+
+    /**
+     * @return the studentAttachment3
+     */
+    public String getStudentAttachment3() {
+        return studentAttachment3;
+    }
+
+    /**
+     * @param studentAttachment3 the studentAttachment3 to set
+     */
+    public void setStudentAttachment3(String studentAttachment3) {
+        this.studentAttachment3 = studentAttachment3;
+    }
+
+    /**
+     * @return the advisorName
+     */
+    public String getAdvisorName() {
+        return advisorName;
+    }
+
+    /**
+     * @param advisorName the advisorName to set
+     */
+    public void setAdvisorName(String advisorName) {
+        this.advisorName = advisorName;
     }
     
     
