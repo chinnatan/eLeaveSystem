@@ -1,0 +1,312 @@
+body {
+	background-color: #f5f5f5;
+}
+
+.notfound {
+	margin-top: 11rem;
+}
+
+.index {
+	height: 100%;
+	text-align: center;
+	background-image: url('../images/bg.jpg');
+	box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+}
+
+.login {
+	margin-top: 10rem;
+	height: 100%;
+	background-image: url('../images/bg.jpg');
+}
+
+.selection {
+	margin-top: 5rem;
+	background-color: #f5f5f5;
+}
+
+.title {
+	margin-top: 5rem;
+}
+
+.manage {
+	background-color: #f5f5f5;
+}
+
+.manage-title {
+	margin-top: 5rem;
+}
+
+.form-title {
+	margin-top: 5rem;
+}
+
+.form-content {
+	margin-bottom: 2%;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+ 	border-radius: 5px 5px 5px 5px;
+}
+
+/* Links */
+a,
+a:focus,
+a:hover {
+	color: #fff;
+}
+
+body {
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+	-ms-flex-align: center;
+	-ms-flex-pack: center;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+@media screen and (max-width: 360px) and (max-width: 768px), screen and (max-width: 412px) and (max-width: 768px), screen and (max-width: 414px) and (max-width: 768px) {
+	body {
+		min-height: 20rem;
+	}
+}
+
+.cover-container {
+	max-width: 42em;
+}
+
+/*
+ * Header
+ */
+ .masthead {
+ 	margin-bottom: 2rem;
+ }
+
+ .masthead-brand {
+ 	margin-bottom: 10rem;
+ }
+
+ .nav-masthead .nav-link {
+ 	padding: .25rem 0;
+ 	font-weight: 700;
+ 	color: rgba(255, 255, 255, .5);
+ 	background-color: transparent;
+ 	border-bottom: .25rem solid transparent;
+ }
+
+ .nav-masthead .nav-link:hover,
+ .nav-masthead .nav-link:focus {
+ 	border-bottom-color: rgba(255, 255, 255, .25);
+ }
+
+ .nav-masthead .nav-link + .nav-link {
+ 	margin-left: 1rem;
+ }
+
+ .nav-masthead .active {
+ 	color: #fff;
+ 	border-bottom-color: #fff;
+ }
+
+ @media (min-width: 48em) {
+ 	.masthead-brand {
+ 		float: left;
+ 	}
+ 	.nav-masthead {
+ 		float: right;
+ 	}
+ }
+
+ /*
+ * Cover
+ */
+.cover {
+  padding: 0 1.5rem;
+  margin-bottom: 17rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+/*
+ * Footer
+ */
+.mastfoot {
+  color: rgba(255, 255, 255, .5);
+}
+
+ /** Form **/
+
+ .form-signin {
+ 	width: 100%;
+ 	max-width: 330px;
+ 	padding: 15px;
+ 	margin: 0 auto;
+ 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ 	background: #ffffff;
+ 	border-radius: 5px 5px 5px 5px;
+ }
+ .form-signin .checkbox {
+ 	font-weight: 400;
+ }
+ .form-signin .form-control {
+ 	position: relative;
+ 	box-sizing: border-box;
+ 	height: auto;
+ 	padding: 10px;
+ 	font-size: 16px;
+ }
+ .form-signin .form-control:focus {
+ 	z-index: 2;
+ }
+ .form-signin input[type="text"] {
+ 	margin-bottom: -1px;
+ 	border-bottom-right-radius: 0;
+ 	border-bottom-left-radius: 0;
+ }
+ .form-signin input[type="password"] {
+ 	margin-bottom: 10px;
+ 	border-top-left-radius: 0;
+ 	border-top-right-radius: 0;
+ }
+
+ /** Button **/
+
+ .btn-signin {
+ 	color: #fff;
+ 	background-color: #93201e;
+ 	border-color: #93201e;
+ }
+
+ .btn-signin:hover {
+ 	color: #fff;
+ 	background-color: #ad352a;
+ 	border-color: #ad352a;
+ }
+
+ .btn-signin:focus, .btn-signin.focus {
+ 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+ }
+
+ .btn-signin.disabled, .btn-signin:disabled {
+ 	color: #fff;
+ 	background-color: #93201e;
+ 	border-color: #93201e;
+ }
+
+ .btn-signin:not(:disabled):not(.disabled):active, .btn-signin:not(:disabled):not(.disabled).active,
+ .show > .btn-signin.dropdown-toggle {
+ 	color: #fff;
+ 	background-color: #ad352a;
+ 	border-color: #920502;
+ }
+
+ .btn-signin:not(:disabled):not(.disabled):active:focus, .btn-signin:not(:disabled):not(.disabled).active:focus,
+ .show > .btn-signin.dropdown-toggle:focus {
+ 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+ }
+
+ .btn-red {
+ 	color: #fff;
+ 	background-color: #93201e;
+ 	border-color: #93201e;
+ }
+
+ .btn-red:hover {
+ 	color: #fff;
+ 	background-color: #ad352a;
+ 	border-color: #ad352a;
+ }
+
+ .btn-red:focus, .btn-red.focus {
+ 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+ }
+
+ .btn-red.disabled, .btn-red:disabled {
+ 	color: #fff;
+ 	background-color: #93201e;
+ 	border-color: #93201e;
+ }
+
+ .btn-red:not(:disabled):not(.disabled):active, .btn-red:not(:disabled):not(.disabled).active,
+ .show > .btn-red.dropdown-toggle {
+ 	color: #fff;
+ 	background-color: #ad352a;
+ 	border-color: #920502;
+ }
+
+ .btn-red:not(:disabled):not(.disabled):active:focus, .btn-red:not(:disabled):not(.disabled).active:focus,
+ .show > .btn-red.dropdown-toggle:focus {
+ 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+ }
+
+ /** Navbar **/
+
+ .navbar-red .navbar-brand {
+ 	color: #fff;
+ }
+
+ .navbar-red .navbar-brand:hover, .navbar-red .navbar-brand:focus {
+ 	color: #fff;
+ }
+
+ .navbar-red .navbar-nav .nav-link {
+ 	color: rgba(255, 255, 255, 0.5);
+ 	margin-left: .25rem;
+ 	border-radius: .25rem;
+ 	padding-left: .30rem;
+ 	padding-right: .30rem;
+ }
+
+ .navbar-red .navbar-nav .nav-link:hover, .navbar-red .navbar-nav .nav-link:focus {
+ 	color: rgba(255, 255, 255, 0.75);
+ }
+
+ .navbar-red .navbar-nav .nav-link.disabled {
+ 	color: rgba(255, 255, 255, 0.25);
+ }
+
+ .navbar-red .navbar-nav .show > .nav-link,
+ .navbar-red .navbar-nav .active > .nav-link,
+ .navbar-red .navbar-nav .nav-link.show,
+ .navbar-red .navbar-nav .nav-link.active {
+ 	color: #fff;
+ 	background: #93201e;
+ }
+
+ .navbar-red .navbar-toggler {
+ 	color: rgba(255, 255, 255, 0.5);
+ 	border-color: rgba(255, 255, 255, 0.1);
+ }
+
+ .navbar-red .navbar-toggler-icon {
+ 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+ }
+
+ .navbar-red .navbar-text {
+ 	color: rgba(255, 255, 255, 0.5);
+ }
+
+ .navbar-red .navbar-text a {
+ 	color: #fff;
+ }
+
+ .navbar-red .navbar-text a:hover, .navbar-red .navbar-text a:focus {
+ 	color: #fff;
+ }
+
+ .bg-red {
+ 	background-color: #ad352a !important;
+ 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+
+ a.bg-red:hover, a.bg-red:focus,
+ button.bg-red:hover,
+ button.bg-red:focus {
+ 	background-color: #93201e !important;
+ }
