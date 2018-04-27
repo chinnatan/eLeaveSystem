@@ -41,22 +41,24 @@
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
+
     <%
         if (account == null || account.getUsername() == null) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Please Sign-in");
     %>
+
+
+    <% } else if (account.getPerson_type() != null) { %>
+    <% response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "You not have permission."); %>
+    <% } else { %>
+
+    <!-- Current Date -->
+    <% Date curDate = new Date(); %>
+    <% SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy", new Locale("th", "TH")); %>
+    <% String DateToStr = format.format(curDate); %>
+    <% String classname = request.getParameter("classname");%>
+
     <body onload="window.print()">
-
-        <% } else if (account.getPerson_type() != null) { %>
-        <% response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "You not have permission."); %>
-        <% } else { %>
-
-        <!-- Current Date -->
-        <% Date curDate = new Date(); %>
-        <% SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy", new Locale("th", "TH")); %>
-        <% String DateToStr = format.format(curDate); %>
-        <% String classname = request.getParameter("classname");%>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-4"></div>
@@ -125,7 +127,7 @@
                                         join person
                                         on (person.person_id = leavedocument.student_p_person_id)
                                         join student
-                                        using (person_id)
+                                        on (person.person_id = student.p_person_id)
                                         join class
                                         on (class.class_id = leavedocument_section.subjectleave_id)
                                         where status != 'รอการอนุมัติ'
@@ -138,7 +140,7 @@
                                         join person
                                         on (person.person_id = leavedocument.student_p_person_id)
                                         join student
-                                        using (person_id)
+                                        on (person.person_id = student.p_person_id)
                                         join class
                                         on (class.class_id = leavedocument_section.subjectleave_id)
                                         where class_name = '<%= classname%>' and status != 'รอการอนุมัติ'

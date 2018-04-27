@@ -4,12 +4,17 @@
     Author     : kornc
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="model.LeaveInformation"%>
 <%@page import="model.Login"%>
 <% Login account = (Login) session.getAttribute("Account");%>
+<% LeaveInformation printLeave = (LeaveInformation) session.getAttribute("PrintLeavedocument");%>
 <jsp:useBean id="AccountInformation" scope="session" class="model.AccountInformation"/>
 <jsp:useBean id="Account" scope="session" class="model.Login"/>
+<jsp:useBean id="PrintLeavedocument" scope="session" class="model.LeaveInformation"/>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@taglib  uri = "http://java.sun.com/jsp/jstl/fmt" prefix ="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,6 +40,14 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+            if (account == null || account.getUsername() == null) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Please Sign-in.");
+            } else if (!account.getPerson_type().equals("student")) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "You not have Permission.");
+            } else {
+        %>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-4"></div>
@@ -49,13 +62,19 @@
                             <p>แบบฟอร์มใบลาเรียนของนักศึกษา</p>
                         </div>
                         <div class="col-md-4 text-right">
-                            <p>ลาล่วงหน้า/ลาย้อนหลัง</p>
-                            <p>วันที่</p>
+                            <p>${PrintLeavedocument.leaveType}</p>
+                            <fmt:setLocale value="th"></fmt:setLocale>
+                                <p>
+                                    วันที่ <fmt:formatDate pattern = "dd" value = "${PrintLeavedocument.dateDocument}" />
+                                เดือน <fmt:formatDate pattern = "MMMM" value = "${PrintLeavedocument.dateDocument}" />
+                                ปี <fmt:formatDate pattern = "yyyy" value = "${PrintLeavedocument.dateDocument}" />
+                            </p>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <p>เรื่อง ขอ</p>
+                            <p>เรื่อง ขอ${PrintLeavedocument.category}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -68,35 +87,35 @@
 
                         </div>
                         <div class="col-md-3">
-                            <p>ข้าพเจ้า.....</p>
+                            <p>ข้าพเจ้า ${PrintLeavedocument.firstname} ${PrintLeavedocument.lastname}</p>
                         </div>
                         <div class="col-md-3">
-                            <p>รหัสประจำตัว.....</p>
+                            <p>รหัสประจำตัว ${PrintLeavedocument.studentId}</p>
                         </div>
                         <div class="col-md-2">
-                            <p>ภาคเรียนที่.....</p>
+                            <p>ภาคเรียนที่ ${PrintLeavedocument.studentTerm}</p>
                         </div>
                         <div class="col-md-3">
-                            <p>ปีการศึกษา.....</p>
+                            <p>ปีการศึกษา ${PrintLeavedocument.leaveYear}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            เป็นนักศึกษาชั้นปีที่....
+                            เป็นนักศึกษาชั้นปีที่ ${PrintLeavedocument.studentYear}
                         </div>
                         <div class="col-md-2">
-                            <p>รุ่น.....</p>
+                            <p>รุ่น ${PrintLeavedocument.studentGeneration}</p>
                         </div>
                         <div class="col-md-3">
-                            <p>สาขาวิชา.....</p>
+                            <p>สาขาวิชา ${PrintLeavedocument.studentBranch}</p>
                         </div>
                         <div class="col-md-3">
-                            <p>ระดับปริญญาตรี</p>
+                            <p>ระดับ ${PrintLeavedocument.studentDegree}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            มีความประสงค์จะขอลาเนื่องจาก......................
+                            มีความประสงค์จะขอลาเนื่องจาก ${PrintLeavedocument.studentDescription}
                         </div>
                         <div class="col-md-4">
                             <p>โดยได้แนบเอกสารการลาดังนี้</p>
@@ -109,24 +128,35 @@
                         <div class="col-md-11">
                             <div class="row">
                                 <div class="col-md-11">
-                                    1).............
+                                    1) ${PrintLeavedocument.studentAttachment1}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-11">
-                                    2).............
+                                    2) ${PrintLeavedocument.studentAttachment2}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-11">
-                                    3).............
+                                    3) ${PrintLeavedocument.studentAttachment3}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            จึงขอลาเรียนตั้งแต่วัน........ที่....เดือน.........พ.ศ. ...... ถึง วันที่ ................ เดือน ............................. พ.ศ. ....... รวมเป็นเวลา......วัน เมื่อครบกำหนดแล้วข้าพเข้าจะมาเรียนตามปกติและขอรับรองว่าเป็นความจริงทุกประการ 
+                            <fmt:setLocale value="th"></fmt:setLocale>
+                            จึงขอลาเรียนตั้งแต่วัน <fmt:formatDate pattern = "EEEE" value = "${PrintLeavedocument.studentDateFrom}" /> 
+                            ที่ <fmt:formatDate pattern = "d" value = "${PrintLeavedocument.studentDateFrom}" />  
+                            เดือน <fmt:formatDate pattern = "MMMM" value = "${PrintLeavedocument.studentDateFrom}" /> 
+                            พ.ศ. <fmt:formatDate pattern = "yyyy" value = "${PrintLeavedocument.studentDateFrom}" />  
+                            ถึง 
+                            วัน <fmt:formatDate pattern = "EEEE" value = "${PrintLeavedocument.studentDateTo}" />  
+                            ที่ <fmt:formatDate pattern = "d" value = "${PrintLeavedocument.studentDateTo}" /> 
+                            เดือน <fmt:formatDate pattern = "MMMM" value = "${PrintLeavedocument.studentDateTo}" /> 
+                            พ.ศ. <fmt:formatDate pattern = "yyyy" value = "${PrintLeavedocument.studentDateTo}" /> 
+                            รวมเป็นเวลา ${PrintLeavedocument.studentDateTotal} วัน 
+                            เมื่อครบกำหนดแล้วข้าพเข้าจะมาเรียนตามปกติและขอรับรองว่าเป็นความจริงทุกประการ 
                             <b>(หากข้อความข้างต้นเป็นเท็จข้าพเจ้าขอยอมรับผิดตามที่คณะเทคโนโลยีสารสนเทศ สจล. เห็นสมควร)</b>
                         </div>
                     </div>
@@ -161,11 +191,15 @@
 
                         </div>
                         <div class="col-md-5 text-center">
-                            ลงชื่อ.....................................................................นักศึกษา
+                            ลงชื่อ ${PrintLeavedocument.firstname} ${PrintLeavedocument.lastname} นักศึกษา
                             <br>
-                            (..........................................................................)
+                            (${PrintLeavedocument.firstname} ${PrintLeavedocument.lastname})
                             <br>
-                            ............/................../……………..
+                            <c:set var="current" value="<%=new Date()%>"></c:set>
+                            <fmt:setLocale value="th"/>
+                            <fmt:formatDate pattern = "dd" value = "${current}" />/
+                            <fmt:formatDate pattern = "MM" value = "${current}" />/
+                            <fmt:formatDate pattern = "yyyy" value = "${current}" />
                         </div>
                     </div>
                     <div class="row">
@@ -185,11 +219,13 @@
                             หรือ
                         </div>
                         <div class="col-md-5 text-center">
-                            ลงชื่อ...........................................................................อาจารย์ที่ปรึกษา
+                            ลงชื่อ ${PrintLeavedocument.advisorName} อาจารย์ที่ปรึกษา
                             <br>
-                            (..........................................................................)
+                            (${PrintLeavedocument.advisorName})
                             <br>
-                            ............/................../……………..
+                            <fmt:formatDate pattern = "dd" value = "${current}" />/
+                            <fmt:formatDate pattern = "MM" value = "${current}" />/
+                            <fmt:formatDate pattern = "yyyy" value = "${current}" />
                         </div>
                     </div>
                     <div class="row">
@@ -284,5 +320,8 @@
                 </div>
             </div>
         </div>
+        <%
+            }
+        %>
     </body>
 </html>

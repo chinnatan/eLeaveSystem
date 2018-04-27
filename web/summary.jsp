@@ -57,7 +57,7 @@
         </div>
         <!--End PopUp Notification-->
         <!--Check Login Flag=True ?-->
-        <% if (account.getUsername() == null) { %>
+        <% if (account == null || account.getUsername() == null) { %>
         <script type="text/javascript">
             $('#plssignin').modal('show');
         </script>
@@ -167,7 +167,7 @@
                                             join person
                                             on (person.person_id = leavedocument.student_p_person_id)
                                             join student
-                                            using (person_id)
+                                            on (person.person_id = student.p_person_id)
                                             join class
                                             on (class.class_id = leavedocument_section.subjectleave_id)
                                             where class_name = '<%= className%>' 
@@ -181,7 +181,7 @@
                                             join person
                                             on (person.person_id = leavedocument.student_p_person_id)
                                             join student
-                                            using (person_id)
+                                            on (person.person_id = student.p_person_id)
                                         </sql:query>
                                         <% } %>
                                         <tbody>

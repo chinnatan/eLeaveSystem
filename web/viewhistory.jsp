@@ -57,9 +57,9 @@
         leaveInf.setStudentDateFrom(rs.getDate("start_leave_date"));
         leaveInf.setStudentDateTo(rs.getDate("end_leave_date"));
         leaveInf.setStudentDateTotal(rs.getString("total_time"));
-        leaveInf.setStudentAttachment1(rs.getBlob("attachment1"));
-        leaveInf.setStudentAttachment2(rs.getBlob("attachment2"));
-        leaveInf.setStudentAttachment3(rs.getBlob("attachment3"));
+        leaveInf.setStudentAttachment1(rs.getString("attachment1"));
+        leaveInf.setStudentAttachment2(rs.getString("attachment2"));
+        leaveInf.setStudentAttachment3(rs.getString("attachment3"));
         leaveInf.setLeaveYear(rs.getString("year"));
 
         session.setAttribute("ViewLeaveDoc", leaveInf);
@@ -245,13 +245,13 @@
                                                             ${rowLeavedocument.class_name} (${rowLeavedocument.section_name})
                                                         </td>
                                                         <td scope="row">
-                                                            <c:if test="${rowLeavedocument.status == "รอการอนุมัติ"}">
+                                                            <c:if test="${rowLeavedocument.status == 'รอการอนุมัติ'}">
                                                                 ${rowLeavedocument.status}
                                                             </c:if>
-                                                            <c:if test="${rowLeavedocument.status == "อนุมัติ"}">
+                                                            <c:if test="${rowLeavedocument.status == 'อนุมัติ'}">
                                                                 <p class="text-success">${rowLeavedocument.status}</p>
                                                             </c:if>
-                                                            <c:if test="${rowLeavedocument.status == "ไม่อนุมัติ"}">
+                                                            <c:if test="${rowLeavedocument.status == 'ไม่อนุมัติ'}">
                                                                 <p class="text-danger">${rowLeavedocument.status}</p>
                                                             </c:if>
                                                         </td>

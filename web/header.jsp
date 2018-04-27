@@ -88,6 +88,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="history.jsp">ประวัติการลา <span class="sr-only">(current)</span></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="studentleavedocument.jsp">จัดทำเอกสารการลา <span class="sr-only">(current)</span></a>
+                        </li>
                         <% } %>
                         <% }%>
                         <li class="nav-item">

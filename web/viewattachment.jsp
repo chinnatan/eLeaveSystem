@@ -19,8 +19,8 @@
         <link rel="icon" href="images/itkmitl.ico">
     </head>
     <body>
-        
-        <% if(account == null || account.getUsername() == null) { %>
+
+        <% if (account == null || account.getUsername() == null) { %>
         <% response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"); %>
         <% } else { %>
 
@@ -45,11 +45,11 @@
                     String getUrl = "attachment" + attachid;
                     attachname = rs.getString(getUrl + "name");
                     file = new File(rs.getString(getUrl));
-                    if (file == null) {
+                    if (file.isFile()) {
+                        filePDF = new FileInputStream(file);
+                    } else {
                         response.sendRedirect("attachmentfail.html");
                         return;
-                    } else {
-                        filePDF = new FileInputStream(file);
                     }
                 } else {
                     out.println("file not found!");
@@ -60,13 +60,13 @@
                 response.setCharacterEncoding("UTF-8");
                 response.setHeader("Content-Disposition", "inline; filename=" + attachname);
                 response.setContentLengthLong(file.length());
-                
+
                 int len;
                 OutputStream output = response.getOutputStream();
                 while ((len = filePDF.read()) != -1) {
-                     output.write(len);
+                    output.write(len);
                 }
-                
+
                 output.flush();
                 output.close();
                 filePDF.close();
@@ -75,7 +75,7 @@
                 Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, ex);
             }
         %>
-        
-        <% } %>
+
+        <% }%>
     </body>
 </html>
