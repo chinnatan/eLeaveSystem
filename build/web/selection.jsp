@@ -50,7 +50,7 @@
             if (account == null) {
         %>
         <script type="text/javascript">
-    $('#plssignin').modal('show');
+            $('#plssignin').modal('show');
         </script>
         <META HTTP-EQUIV="Refresh" CONTENT="2;URL=login.jsp">
         <%
@@ -140,7 +140,8 @@
                     <% } %>
                 </div>
             </div>
-
-            <% }%>
+            <%@include file="footer.jsp" %>
+        </div>
+        <% }%>
     </body>
 </html>
