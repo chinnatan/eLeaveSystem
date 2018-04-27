@@ -12,6 +12,7 @@
 <jsp:useBean id="AccountInformation" scope="session" class="model.AccountInformation"/>
 <jsp:useBean id="Account" scope="session" class="model.Login"/>
 <jsp:useBean id="PrintLeavedocument" scope="session" class="model.LeaveInformation"/>
+<jsp:useBean id="ClassDocument" scope="session" class="model.ClassDocument"/>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@taglib  uri = "http://java.sun.com/jsp/jstl/fmt" prefix ="fmt" %>
@@ -39,15 +40,14 @@
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <%
-            if (account == null || account.getUsername() == null) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Please Sign-in.");
-            } else if (!account.getPerson_type().equals("student")) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "You not have Permission.");
-            } else {
-        %>
-
+    <%
+        if (account == null || account.getUsername() == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Please Sign-in.");
+        } else if (!account.getPerson_type().equals("student")) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "You not have Permission.");
+        } else {
+    %>
+    <body onload="window.print()">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-4"></div>
@@ -191,7 +191,7 @@
 
                         </div>
                         <div class="col-md-5 text-center">
-                            ลงชื่อ ${PrintLeavedocument.firstname} ${PrintLeavedocument.lastname} นักศึกษา
+                            ลงชื่อ.....................................................................นักศึกษา
                             <br>
                             (${PrintLeavedocument.firstname} ${PrintLeavedocument.lastname})
                             <br>
@@ -219,7 +219,7 @@
                             หรือ
                         </div>
                         <div class="col-md-5 text-center">
-                            ลงชื่อ ${PrintLeavedocument.advisorName} อาจารย์ที่ปรึกษา
+                            ลงชื่อ...............................................................อาจารย์ที่ปรึกษา
                             <br>
                             (${PrintLeavedocument.advisorName})
                             <br>
@@ -249,7 +249,7 @@
                                                 ชื่อวิชา
                                             </th>
                                             <th scope="col">
-                                                อาจารย์ผู้สอน
+                                                อาจารย์ผู้อนุมัติ
                                             </th>
                                             <th scope="col">
                                                 สถานะ
@@ -263,51 +263,57 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="rowLeavedocument" items="${leavedocumentSql.rows}">
+                                        <c:forEach var="rowClass" items="${ClassDocument.classDoc}" varStatus="loopCount">
                                             <tr>
                                                 <th scope="row">
-                                                    ${rowLeavedocument.leave_id}
+                                                    ${loopCount.count}
                                                 </th>
                                                 <td>
                                                     <div class="form-row">
                                                         <div class="col-md-12">
-                                                            ${rowLeavedocument.class_name}
+                                                            ${rowClass.classId}
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-md-12">
-                                                        ${rowLeavedocument.date}
+                                                        ${rowClass.className}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col-md-12">
+                                                        ${rowClass.classProfessor}
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-row">
                                                         <div class="col-md-12">
-                                                            <c:if test = "${rowLeavedocument.status == 'อนุมัติ'}">
+                                                            <c:if test = "${rowClass.classStatus == 'อนุมัติ'}">
                                                                 <p class="text-success">
-                                                                    ${rowLeavedocument.status}
+                                                                    ${rowClass.classStatus}
                                                                 </p>
                                                             </c:if>
-                                                            <c:if test = "${rowLeavedocument.status == 'รอการอนุมัติ'}">
+                                                            <c:if test = "${rowClass.classStatus == 'รอการอนุมัติ'}">
                                                                 <p class="">
-                                                                    ${rowLeavedocument.status}
+                                                                    ${rowClass.classStatus}
                                                                 </p>
                                                             </c:if>
-                                                            <c:if test = "${rowLeavedocument.status == 'ไม่อนุมัติ'}">
+                                                            <c:if test = "${rowClass.classStatus == 'ไม่อนุมัติ'}">
                                                                 <p class="text-danger">
-                                                                    ${rowLeavedocument.status}
+                                                                    ${rowClass.classStatus}
                                                                 </p>
                                                             </c:if>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="form-row">
-                                                        <div class="col-md-12">
-                                                            <a class="modellink btn btn-primary" data-toggle="modal" href="viewhistory.jsp?leaveid=${rowLeavedocument.leave_id}">
-                                                                ดูรายละเอียดการลา
-                                                            </a>
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <fmt:formatDate pattern = "dd/MM/yyyy" value = "${rowClass.classDate}" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col-md-12">
+                                                        ${rowClass.classNote}
                                                     </div>
                                                 </td>
                                             </tr>
