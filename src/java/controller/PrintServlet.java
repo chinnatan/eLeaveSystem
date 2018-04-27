@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.AccountInformation;
+import model.ClassDocument;
+import model.ClassInformation;
 import model.LeaveInformation;
 import model.Login;
 
@@ -55,10 +59,13 @@ public class PrintServlet extends HttpServlet {
             String leaveid = request.getParameter("leaveid");
 
             //Create Variable
+            List<ClassInformation> classInf = new LinkedList<ClassInformation>();
+            String[] countClass = null;
             int checkSum;
 
             //Create Statement
             Statement stmt;
+            Statement stmtClass;
 
             try {
                 stmt = conn.createStatement();
@@ -73,7 +80,7 @@ public class PrintServlet extends HttpServlet {
                         + "on (section_student.section_student_id = student.section_student_section_student_id)"
                         + "where leave_id = '" + leaveid + "'";
                 ResultSet rs = stmt.executeQuery(sqlQuery);
-                if(rs.next()) {
+                if (rs.next()) {
                     LeaveInformation leaveInf = new LeaveInformation();
                     leaveInf.setLeaveId(rs.getString("leave_id"));
                     leaveInf.setCategory(rs.getString("category"));
@@ -96,12 +103,20 @@ public class PrintServlet extends HttpServlet {
                     leaveInf.setStudentDateTo(rs.getDate("end_leave_date"));
                     leaveInf.setStudentDateTotal(rs.getString("total_time"));
                     leaveInf.setAdvisorName(rs.getString("advisor"));
-                    
+
                     session.setAttribute("PrintLeavedocument", leaveInf);
+                    
+                    ClassDocument cd = new ClassDocument(conn);
+                    cd.addClass(leaveid);
+
+                    session.setAttribute("ClassDocument", cd);
+
                     response.sendRedirect("print.jsp");
+
                 } else {
                     response.sendError(HttpServletResponse.SC_NO_CONTENT, "Not have document.");
                 }
+
             } catch (SQLException ex) {
                 Logger.getLogger(PrintServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
